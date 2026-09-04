@@ -18,7 +18,7 @@
       "name": "Concha de Palacio",
       "description": "Diseño de interiores, mobiliario a medida y arte en Ciudad de México.",
       "url": "https://conchadepalacio.com/",
-      "email": "cdepalacio@gmail.com",
+      "email": "contact@conchadepalacio.com",
       "telephone": "+525554010687",
       "address": { "@type": "PostalAddress", "addressLocality": "Ciudad de México", "addressCountry": "MX" },
       "areaServed": ["México", "Worldwide"]
@@ -842,15 +842,72 @@
     .contact h2 em { color: #dfc49d; font-weight: 400; }
     .contact p {
       max-width: 560px;
-      margin: 0 auto 36px;
+      margin: 0 auto 44px;
       color: rgba(255,255,255,.72);
       font-size: 15px;
     }
-    .contact-links {
+    .contact-form {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      text-align: left;
+    }
+    .contact-form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px 34px;
+    }
+    .form-field {
+      display: grid;
+      gap: 9px;
+    }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label {
+      color: rgba(255,255,255,.65);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .form-field input,
+    .form-field textarea {
+      width: 100%;
+      padding: 9px 0 12px;
+      border: 0;
+      border-bottom: 1px solid rgba(255,255,255,.42);
+      border-radius: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
+      transition: border-color .2s ease;
+    }
+    .form-field textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus { border-color: #dfc49d; }
+    .contact-form-actions {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      margin-top: 34px;
+    }
+    .contact-form-actions a {
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+    }
+    .contact .privacy-collection-notice {
+      max-width: none;
+      margin: 22px 0 0;
+      color: rgba(255,255,255,.58);
+      font-size: 11px;
+      text-align: left;
+    }
+    .privacy-collection-notice a {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
     .button {
       display: inline-flex;
@@ -887,6 +944,78 @@
     .site-footer img { width: 190px; }
     .footer-center { justify-self: center; text-align: center; }
     .footer-end { justify-self: end; }
+    .privacy-notice {
+      grid-column: 1 / -1;
+      width: min(1120px, 100%);
+      margin: 14px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      letter-spacing: normal;
+      line-height: 1.7;
+      text-align: left;
+      text-transform: none;
+    }
+    .privacy-notice summary {
+      width: max-content;
+      margin: 0 auto;
+      color: white;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      list-style: none;
+      text-transform: uppercase;
+    }
+    .privacy-notice summary::-webkit-details-marker { display: none; }
+    .privacy-notice summary::after { content: " +"; color: #dfc49d; }
+    .privacy-notice[open] summary::after { content: " −"; }
+    .privacy-content {
+      display: grid;
+      gap: 64px;
+      margin-top: 50px;
+      padding-bottom: 20px;
+    }
+    .privacy-language {
+      width: min(850px, 100%);
+      margin: 0 auto;
+    }
+    .privacy-language + .privacy-language {
+      padding-top: 58px;
+      border-top: 1px solid rgba(255,255,255,.15);
+    }
+    .privacy-language h2 {
+      margin: 0 0 10px;
+      color: white;
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 400;
+      letter-spacing: -.035em;
+      line-height: 1;
+    }
+    .privacy-updated {
+      margin: 0 0 38px;
+      color: #dfc49d;
+      font-size: 10px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .privacy-language h3 {
+      margin: 32px 0 8px;
+      color: white;
+      font-family: var(--serif);
+      font-size: 24px;
+      font-weight: 400;
+      letter-spacing: -.015em;
+    }
+    .privacy-language p { margin: 0 0 14px; }
+    .privacy-language ul { margin: 10px 0 18px; padding-left: 20px; }
+    .privacy-language a {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
 
     .lightbox {
       position: fixed;
@@ -1007,11 +1136,16 @@
       .step p { grid-column: 2; }
       .service-item summary { grid-template-columns: 42px 1fr auto; gap: 10px; }
       .service-item .service-body { padding-left: 52px; }
-      .contact { min-height: 660px; }
-      .contact-links { flex-direction: column; }
+      .contact { min-height: 760px; }
+      .contact-form-grid { grid-template-columns: 1fr; }
+      .form-field.full { grid-column: auto; }
+      .contact-form-actions { align-items: stretch; flex-direction: column; text-align: center; }
       .site-footer { grid-template-columns: 1fr; justify-items: center; text-align: center; }
       .footer-center,
       .footer-end { justify-self: center; }
+      .privacy-notice { grid-column: auto; }
+      .privacy-content { margin-top: 38px; gap: 48px; }
+      .privacy-language { text-align: left; }
       .lightbox-media { min-height: 52svh; }
       .lightbox-close { top: 14px; right: 14px; }
     }
@@ -1058,7 +1192,7 @@
         <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
       </nav>
       <div class="menu-meta">
-        <a href="mailto:cdepalacio@gmail.com">cdepalacio@gmail.com</a>
+        <a href="mailto:contact@conchadepalacio.com">contact@conchadepalacio.com</a>
         <a href="tel:+525554010687">+52 55 5401 0687</a>
         <span>Ciudad de México</span>
       </div>
@@ -1157,7 +1291,7 @@
           <p class="section-label reveal"><span>04</span><span data-es="Concha de Palacio Arte" data-en="Concha de Palacio Art">Concha de Palacio Arte</span></p>
           <h2 class="reveal" data-es="El arte no decora. <em>Da identidad.</em>" data-en="Art does not decorate. <em>It creates identity.</em>">El arte no decora. <em>Da identidad.</em></h2>
           <p class="reveal" data-es="Obra gráfica, escultura y piezas concebidas para dialogar con la arquitectura. Ediciones a medida en acrílico, metal, madera y hoja de oro." data-en="Graphic works, sculpture and pieces conceived in dialogue with architecture. Bespoke editions in acrylic, metal, wood and gold leaf.">Obra gráfica, escultura y piezas concebidas para dialogar con la arquitectura. Ediciones a medida en acrílico, metal, madera y hoja de oro.</p>
-          <a class="text-link reveal" href="mailto:cdepalacio@gmail.com?subject=Catálogo%20de%20arte"><span data-es="Solicitar catálogo" data-en="Request the catalogue">Solicitar catálogo</span><i>→</i></a>
+          <a class="text-link reveal" href="mailto:contact@conchadepalacio.com?subject=Catálogo%20de%20arte"><span data-es="Solicitar catálogo" data-en="Request the catalogue">Solicitar catálogo</span><i>→</i></a>
         </div>
       </div>
       <div class="art-strip">
@@ -1205,10 +1339,39 @@
         <p class="section-label reveal"><span>07</span><span data-es="Comencemos" data-en="Let’s begin">Comencemos</span></p>
         <h2 class="reveal" data-es="Tu próximo espacio puede ser <em>extraordinario.</em>" data-en="Your next space can be <em>extraordinary.</em>">Tu próximo espacio puede ser <em>extraordinario.</em></h2>
         <p class="reveal" data-es="Cuéntanos dónde está, cómo quieres vivirlo y qué te gustaría sentir al entrar." data-en="Tell us where it is, how you want to live in it and what you would like to feel when you enter.">Cuéntanos dónde está, cómo quieres vivirlo y qué te gustaría sentir al entrar.</p>
-        <div class="contact-links reveal">
-          <a class="button" href="mailto:cdepalacio@gmail.com?subject=Nuevo%20proyecto" data-es="Escribir al estudio" data-en="Email the studio">Escribir al estudio</a>
-          <a class="button ghost" href="tel:+525554010687">+52 55 5401 0687</a>
-        </div>
+        <form class="contact-form reveal" action="https://formspree.io/f/xjyvovdr" method="POST">
+          <input type="hidden" name="_subject" value="Nuevo proyecto — Concha de Palacio Interiores">
+          <div class="contact-form-grid">
+            <div class="form-field">
+              <label for="contact-name" data-es="Nombre" data-en="Name">Nombre</label>
+              <input id="contact-name" name="nombre" type="text" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <label for="contact-email" data-es="Correo electrónico" data-en="Email address">Correo electrónico</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="form-field">
+              <label for="contact-phone" data-es="Teléfono" data-en="Phone">Teléfono</label>
+              <input id="contact-phone" name="telefono" type="tel" autocomplete="tel">
+            </div>
+            <div class="form-field">
+              <label for="contact-location" data-es="Ubicación del proyecto" data-en="Project location">Ubicación del proyecto</label>
+              <input id="contact-location" name="ubicacion" type="text" autocomplete="address-level2">
+            </div>
+            <div class="form-field full">
+              <label for="contact-message" data-es="Cuéntanos sobre tu proyecto" data-en="Tell us about your project">Cuéntanos sobre tu proyecto</label>
+              <textarea id="contact-message" name="mensaje" required></textarea>
+            </div>
+          </div>
+          <div class="contact-form-actions">
+            <a href="tel:+525554010687">+52 55 5401 0687</a>
+            <button class="button" type="submit" data-es="Enviar solicitud" data-en="Send enquiry">Enviar solicitud</button>
+          </div>
+          <p class="privacy-collection-notice">
+            <span data-es="Al enviar este formulario, tus datos serán tratados para responder a tu solicitud y preparar, en su caso, una propuesta de servicios." data-en="By submitting this form, your data will be processed to answer your enquiry and, where applicable, prepare a service proposal.">Al enviar este formulario, tus datos serán tratados para responder a tu solicitud y preparar, en su caso, una propuesta de servicios.</span>
+            <a class="privacy-open" href="#aviso-de-privacidad" data-es="Consulta el aviso de privacidad" data-en="Read the privacy notice">Consulta el aviso de privacidad</a>.
+          </p>
+        </form>
       </div>
     </section>
   </main>
@@ -1217,6 +1380,98 @@
     <img src="data:image/png;base64,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" alt="Concha de Palacio Interiores">
     <div class="footer-center">Ciudad de México · Proyectos internacionales</div>
     <a class="footer-end" href="#top" data-es="Volver arriba ↑" data-en="Back to top ↑">Volver arriba ↑</a>
+    <details class="privacy-notice" id="aviso-de-privacidad">
+      <summary>Aviso de privacidad · Privacy notice</summary>
+      <div class="privacy-content">
+        <article class="privacy-language" lang="es">
+          <h2>Aviso de privacidad integral</h2>
+          <p class="privacy-updated">Última actualización: 3 de septiembre de 2026</p>
+
+          <h3>1. Identidad del responsable</h3>
+          <p>LIC International Inc., operadora de este sitio bajo la marca Concha de Palacio Interiores ("Concha de Palacio", "nosotros"), con domicilio en 1515 Plume Grass Pl, Round Rock, Texas 78655, Estados Unidos, y número de identificación fiscal US EIN 74-2903110, es responsable del tratamiento de los datos personales recabados mediante este sitio. Para asuntos de privacidad y ejercicio de derechos, escríbenos a <a href="mailto:contact@conchadepalacio.com">contact@conchadepalacio.com</a> o llama al <a href="tel:+16197071357">+1 619 707 1357</a>.</p>
+
+          <h3>2. Datos que recabamos</h3>
+          <p>Cuando envías el formulario de contacto podemos recabar: nombre, correo electrónico, teléfono, ubicación del proyecto, contenido del mensaje y cualquier dato que decidas incluir. No solicitamos datos personales sensibles; te pedimos no incluirlos en mensajes de formato libre.</p>
+          <p>Al visitar el sitio, nuestros proveedores técnicos pueden procesar automáticamente datos limitados como dirección IP, fecha y hora, URL solicitada, navegador, dispositivo, sistema operativo, página de referencia y registros de seguridad.</p>
+
+          <h3>3. Finalidades y bases del tratamiento</h3>
+          <ul>
+            <li>Responder consultas y comunicarnos contigo.</li>
+            <li>Evaluar proyectos y preparar cotizaciones, propuestas o medidas precontractuales solicitadas.</li>
+            <li>Administrar la relación profesional y prestar los servicios contratados.</li>
+            <li>Proteger el sitio, prevenir abuso o fraude y cumplir obligaciones legales.</li>
+          </ul>
+          <p>No utilizamos los datos del formulario para publicidad no solicitada ni para decisiones automatizadas o elaboración de perfiles. En el Espacio Económico Europeo, las bases jurídicas son las medidas precontractuales solicitadas, la ejecución de un contrato, nuestras obligaciones legales y el interés legítimo en responder consultas y proteger nuestros servicios. Solicitaremos consentimiento separado cuando sea obligatorio.</p>
+
+          <h3>4. Encargados, divulgación y transferencias internacionales</h3>
+          <p>El sitio está alojado por <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noopener noreferrer">Vercel</a>. Las solicitudes del formulario se procesan y almacenan mediante <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Formspree</a> y se entregan al correo del estudio. Estos proveedores pueden tratar datos en Estados Unidos y otros países para prestar, asegurar y mantener sus servicios. Cuando resulte aplicable, las transferencias internacionales se realizarán mediante mecanismos jurídicos y salvaguardas reconocidos por la normativa correspondiente.</p>
+          <p>Podemos divulgar datos cuando una autoridad lo exija legalmente, para proteger derechos o seguridad, o en relación con asesores profesionales sujetos a confidencialidad. No vendemos ni alquilamos datos personales y no los compartimos para publicidad conductual entre contextos.</p>
+
+          <h3>5. Conservación y seguridad</h3>
+          <p>Las consultas que no generen una relación contractual se conservarán hasta 24 meses después del último contacto. Los expedientes de clientes se conservarán durante la relación y, después, hasta cinco años o el plazo superior exigido para atender obligaciones legales, fiscales, contractuales o reclamaciones. Los proveedores técnicos aplican sus propios periodos de conservación a registros de seguridad. Adoptamos medidas administrativas y técnicas razonables, aunque ningún sistema es completamente infalible.</p>
+
+          <h3>6. Derechos en México</h3>
+          <p>Conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, puedes ejercer los derechos de acceso, rectificación, cancelación y oposición (ARCO), revocar tu consentimiento o limitar el uso y divulgación de tus datos. Envía la solicitud a <a href="mailto:contact@conchadepalacio.com">contact@conchadepalacio.com</a> indicando tu nombre, medio para recibir respuesta, derecho que deseas ejercer, descripción de los datos y documentos que acrediten tu identidad o representación. Responderemos dentro de los plazos legales. También puedes acudir a la Secretaría Anticorrupción y Buen Gobierno.</p>
+
+          <h3>7. Derechos en Europa</h3>
+          <p>Si el Reglamento General de Protección de Datos (RGPD) resulta aplicable, puedes solicitar acceso, rectificación, supresión, limitación, portabilidad u oposición; retirar el consentimiento sin afectar el tratamiento previo; y presentar una reclamación ante la autoridad de control de tu residencia, trabajo o lugar de la presunta infracción. También puedes pedir información sobre las salvaguardas utilizadas para transferencias internacionales.</p>
+
+          <h3>8. Derechos de residentes de California</h3>
+          <p>En la medida en que la CCPA, modificada por la CPRA, resulte aplicable, los residentes de California pueden solicitar conocer, acceder, corregir o eliminar su información personal, obtener información sobre sus fuentes, fines y destinatarios, limitar ciertos usos de información sensible y no ser discriminados por ejercer sus derechos. En los últimos doce meses podemos haber recabado identificadores y datos de contacto, información sobre proyectos y actividad técnica de Internet, directamente de ti o de tu dispositivo, y haberlos divulgado a proveedores de alojamiento, seguridad y formularios para fines empresariales. No vendemos ni compartimos información personal para publicidad conductual entre contextos y no usamos información sensible para fines que activen el derecho a limitar. Respetaremos señales de Global Privacy Control cuando legalmente corresponda.</p>
+          <p>Para ejercer estos derechos, usa los datos de contacto de la sección 1. Podremos verificar tu identidad antes de responder. Un agente autorizado puede presentar una solicitud con la documentación correspondiente. El sitio no cambia su comportamiento ante señales "Do Not Track" porque no realiza seguimiento publicitario entre sitios.</p>
+
+          <h3>9. Cookies</h3>
+          <p>Actualmente, este sitio no instala cookies de analítica, publicidad ni personalización y no incorpora herramientas de seguimiento conductual. Vercel puede procesar registros técnicos indispensables para entregar y proteger el sitio; Formspree recibe los datos técnicos y del formulario únicamente cuando realizas un envío. Por ello no mostramos un banner de consentimiento para cookies no esenciales. Si en el futuro incorporamos analítica, publicidad u otras cookies no necesarias, actualizaremos este aviso y solicitaremos consentimiento previo donde corresponda, con opciones equivalentes para aceptar, rechazar y retirar el consentimiento.</p>
+
+          <h3>10. Menores y cambios</h3>
+          <p>El sitio y los servicios no están dirigidos a menores y no recabamos intencionalmente sus datos. Podemos actualizar este aviso para reflejar cambios legales o de tratamiento; la versión vigente y su fecha se publicarán aquí.</p>
+        </article>
+
+        <article class="privacy-language" lang="en">
+          <h2>Comprehensive privacy notice</h2>
+          <p class="privacy-updated">Last updated: September 3, 2026</p>
+
+          <h3>1. Identity of the controller</h3>
+          <p>LIC International Inc., operator of this website under the Concha de Palacio Interiores brand ("Concha de Palacio", "we", "us"), located at 1515 Plume Grass Pl, Round Rock, Texas 78655, United States, with US tax identification number EIN 74-2903110, is responsible for personal data collected through this website. For privacy matters and rights requests, email <a href="mailto:contact@conchadepalacio.com">contact@conchadepalacio.com</a> or call <a href="tel:+16197071357">+1 619 707 1357</a>.</p>
+
+          <h3>2. Data we collect</h3>
+          <p>When you submit the contact form, we may collect your name, email address, telephone number, project location, message contents and any information you choose to provide. We do not request sensitive personal data; please do not include it in free-text messages.</p>
+          <p>When you visit the site, our technical providers may automatically process limited data such as IP address, date and time, requested URL, browser, device, operating system, referring page and security logs.</p>
+
+          <h3>3. Purposes and legal bases</h3>
+          <ul>
+            <li>Answer enquiries and communicate with you.</li>
+            <li>Evaluate projects and prepare requested quotations, proposals or pre-contractual steps.</li>
+            <li>Manage the professional relationship and provide contracted services.</li>
+            <li>Protect the site, prevent abuse or fraud and comply with legal obligations.</li>
+          </ul>
+          <p>We do not use contact-form data for unsolicited advertising, automated decision-making or profiling. In the European Economic Area, our legal bases are requested pre-contractual steps, performance of a contract, compliance with legal obligations and our legitimate interests in answering enquiries and protecting our services. We will seek separate consent where required.</p>
+
+          <h3>4. Processors, disclosures and international transfers</h3>
+          <p>The site is hosted by <a href="https://vercel.com/legal/privacy-notice" target="_blank" rel="noopener noreferrer">Vercel</a>. Form requests are processed and stored through <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Formspree</a> and delivered to the studio's email account. These providers may process data in the United States and other countries to provide, secure and maintain their services. Where applicable, international transfers will rely on legal mechanisms and safeguards recognised by the relevant law.</p>
+          <p>We may disclose data where legally required by an authority, to protect rights or safety, or to professional advisers bound by confidentiality. We do not sell or rent personal data and do not share it for cross-context behavioural advertising.</p>
+
+          <h3>5. Retention and security</h3>
+          <p>Enquiries that do not result in a contractual relationship are retained for up to 24 months after the last contact. Client records are retained for the relationship and then for up to five years, or longer where required for legal, tax, contractual or claims purposes. Technical providers apply their own retention periods to security logs. We use reasonable administrative and technical safeguards, although no system is completely infallible.</p>
+
+          <h3>6. Rights in Mexico</h3>
+          <p>Under Mexico's Federal Law on Protection of Personal Data Held by Private Parties, you may exercise rights of access, rectification, cancellation and objection (ARCO), withdraw consent or limit the use and disclosure of your data. Email your request to <a href="mailto:contact@conchadepalacio.com">contact@conchadepalacio.com</a> with your name, response method, right requested, description of the data and proof of identity or authority. We will respond within the statutory periods. You may also contact Mexico's Ministry of Anti-Corruption and Good Government.</p>
+
+          <h3>7. European rights</h3>
+          <p>Where the General Data Protection Regulation (GDPR) applies, you may request access, correction, erasure, restriction, portability or objection; withdraw consent without affecting earlier processing; and complain to the supervisory authority where you live, work or where the alleged infringement occurred. You may also request information about safeguards used for international transfers.</p>
+
+          <h3>8. California residents' rights</h3>
+          <p>To the extent the CCPA, as amended by the CPRA, applies, California residents may request to know, access, correct or delete personal information; receive information about its sources, purposes and recipients; limit certain uses of sensitive information; and receive equal treatment when exercising their rights. During the preceding twelve months, we may have collected identifiers and contact details, project information and Internet technical activity directly from you or your device, and disclosed them to hosting, security and form providers for business purposes. We do not sell or share personal information for cross-context behavioural advertising and do not use sensitive information for purposes that trigger the right to limit. We will honour Global Privacy Control signals where legally applicable.</p>
+          <p>Use the contact details in section 1 to exercise these rights. We may verify your identity before responding. An authorised agent may submit a request with appropriate documentation. The site does not respond differently to "Do Not Track" signals because it does not conduct cross-site advertising tracking.</p>
+
+          <h3>9. Cookies</h3>
+          <p>This site currently sets no analytics, advertising or personalisation cookies and includes no behavioural tracking tools. Vercel may process technical logs required to deliver and secure the site; Formspree receives technical and form data only when you submit the form. We therefore do not display a consent banner for non-essential cookies. If we later add analytics, advertising or other non-essential cookies, we will update this notice and seek prior consent where required, offering equivalent options to accept, reject and withdraw consent.</p>
+
+          <h3>10. Children and changes</h3>
+          <p>The site and services are not directed to children, and we do not knowingly collect their data. We may update this notice to reflect legal or processing changes; the current version and date will be published here.</p>
+        </article>
+      </div>
+    </details>
   </footer>
 
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lightboxTitle">
@@ -1239,6 +1494,7 @@
     const menuClose = document.querySelector('.menu-close');
     const lightbox = document.getElementById('lightbox');
     const lightboxClose = document.querySelector('.lightbox-close');
+    const privacyNotice = document.getElementById('aviso-de-privacidad');
     let language = 'es';
 
     const projectData = [
@@ -1356,6 +1612,10 @@
     });
     lightboxClose.addEventListener('click', closeProject);
     lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeProject(); });
+    document.querySelectorAll('.privacy-open').forEach((link) => {
+      link.addEventListener('click', () => { privacyNotice.open = true; });
+    });
+    if (window.location.hash === '#aviso-de-privacidad') privacyNotice.open = true;
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && menu.classList.contains('open')) closeMenu();
