@@ -54,7 +54,8 @@
       overflow-x: hidden;
     }
     body.menu-open,
-    body.modal-open { overflow: hidden; }
+    body.modal-open,
+    body.privacy-modal-open { overflow: hidden; }
     img { display: block; width: 100%; }
     a { color: inherit; text-decoration: none; }
     button, input, textarea { font: inherit; }
@@ -971,6 +972,44 @@
     .privacy-notice summary::-webkit-details-marker { display: none; }
     .privacy-notice summary::after { content: " +"; color: #dfc49d; }
     .privacy-notice[open] summary::after { content: " −"; }
+    .privacy-notice:not([open]) > :not(summary) { display: none; }
+    .privacy-notice[open] {
+      position: fixed;
+      z-index: 200;
+      inset: 0;
+      width: 100%;
+      height: 100svh;
+      margin: 0;
+      padding: 32px var(--side) 72px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      border: 0;
+      background: var(--ink);
+    }
+    .privacy-notice[open] summary {
+      position: sticky;
+      z-index: 2;
+      top: 0;
+      padding: 10px 48px 20px;
+      background: var(--ink);
+    }
+    .privacy-close {
+      position: fixed;
+      z-index: 3;
+      top: 24px;
+      right: var(--side);
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 50%;
+      background: var(--ink);
+      color: white;
+      cursor: pointer;
+      font-size: 27px;
+      font-weight: 300;
+      line-height: 1;
+    }
     .privacy-content {
       display: grid;
       gap: 64px;
@@ -1144,6 +1183,9 @@
       .footer-center,
       .footer-end { justify-self: center; }
       .privacy-notice { grid-column: auto; }
+      .privacy-notice[open] { padding: 22px 22px 60px; }
+      .privacy-notice[open] summary { width: 100%; padding-inline: 40px; }
+      .privacy-close { top: 14px; right: 14px; }
       .privacy-content { margin-top: 38px; gap: 48px; }
       .privacy-language { text-align: left; }
       .lightbox-media { min-height: 52svh; }
@@ -1382,6 +1424,7 @@
     <a class="footer-end" href="#top" data-es="Volver arriba ↑" data-en="Back to top ↑">Volver arriba ↑</a>
     <details class="privacy-notice" id="aviso-de-privacidad">
       <summary>Aviso de privacidad · Privacy notice</summary>
+      <button class="privacy-close" type="button" aria-label="Cerrar aviso de privacidad">×</button>
       <div class="privacy-content">
         <article class="privacy-language" lang="es">
           <h2>Aviso de privacidad integral</h2>
@@ -1615,11 +1658,19 @@
     document.querySelectorAll('.privacy-open').forEach((link) => {
       link.addEventListener('click', () => { privacyNotice.open = true; });
     });
+    privacyNotice.querySelector('.privacy-close').addEventListener('click', () => {
+      privacyNotice.open = false;
+    });
+    privacyNotice.addEventListener('toggle', () => {
+      body.classList.toggle('privacy-modal-open', privacyNotice.open);
+      if (privacyNotice.open) privacyNotice.scrollTop = 0;
+    });
     if (window.location.hash === '#aviso-de-privacidad') privacyNotice.open = true;
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && menu.classList.contains('open')) closeMenu();
       if (event.key === 'Escape' && lightbox.classList.contains('open')) closeProject();
+      if (event.key === 'Escape' && privacyNotice.open) privacyNotice.open = false;
     });
 
     const observer = new IntersectionObserver((entries) => {
